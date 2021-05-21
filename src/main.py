@@ -26,11 +26,11 @@ class VolumeWarning(discord.Client):
 
                 # check if the max dB of the audio is too high
                 audseg = AudioSegment.from_file(tempdir / Path(attachment.filename))
-                if audseg.max_dBFS >= -6.0:
+                if audseg.max_dBFS <= -12.0:
                     await msg.reply("ATTENTION: The attached media to the linked message contains audio that goes way above normal hearing, and it is recommended you turn down the volume or don't watch at all!", mention_author=False)
-                elif audseg.max_dBFS >= -9.0:
+                elif audseg.max_dBFS <= -9.0:
                     await msg.reply("Warning: The attached media to the linked message contains audio that may be harmful to ones hearing, and it is recommended you turn down the volume before watching", mention_author=False)
-                elif audseg.max_dBFS >= -12.0:
+                elif audseg.max_dBFS <= -6.0:
                     await msg.reply("Caution: The attached media to the linked message contains audio that goes above the normal hearing ranges and might be harsh on the ears.", mention_author=False)
 
 
